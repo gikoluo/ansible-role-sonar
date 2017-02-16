@@ -1,12 +1,11 @@
 ---
 dependencies:
-  - geerlingguy.java
   - geerlingguy.mysql
 
 galaxy_info:
-  author: geerlingguy
-  description: SonarQube for Linux
-  company: "Midwestern Mac, LLC"
+  author: gikoluo
+  description: SonarQube for Linux. forked from geerlingguy/ansible-role-sonar
+  company: "Jfpal.com"
   license: "license (BSD, MIT)"
   min_ansible_version: 1.8
   platforms:
