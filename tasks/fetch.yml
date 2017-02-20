@@ -1,0 +1,17 @@
+#
+# fetch .tar.gz files
+#
+- stat:
+    path: "{{ sonar_download_path }}/{{ sonar_tarball }}.tar.gz"
+  register: st
+
+- debug: msg="Download {{ sonar_tarball_url }} to {{ sonar_download_path }}/{{ sonar_tarball }}.zip"
+
+- name: get Sonar tarball (as tar.gz file)
+  get_url:
+    url:     "{{ sonar_tarball_url }}"
+    dest:    "{{ sonar_download_path }}/{{ sonar_tarball }}.zip"
+    mode:    0644
+  when: sonar_download_from_remote and not st.stat.exists
+
+
