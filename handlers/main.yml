@@ -1,3 +1,4 @@
 ---
 - name: restart sonar
-  service: name=sonar state=restarted
+  command: /etc/init.d/sonar restart
+  become: yes

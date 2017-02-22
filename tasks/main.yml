@@ -22,7 +22,7 @@
     src: "{{ sonar_download_path }}/{{ sonar_tarball }}.zip"
     dest: "/tmp/{{ sonar_tarball }}.zip"
 
-- name: Extract the Logstash tarball
+- name: Extract the Sonar tarball
   become: yes
   unarchive:
     src: "/tmp/{{ sonar_tarball }}.zip"
@@ -37,7 +37,7 @@
 #     copy: no
 #     creates: /usr/local/sonar/COPYING
 
-- name: Install Logstash
+- name: Install Sonar
   become: yes
   command: "cp -R /tmp/{{ sonar_tarball }} {{ sonar_install_dir }}"
   args:
@@ -53,12 +53,15 @@
     src: "{{ sonar_install_dir }}/bin/linux-x86-64/sonar.sh"
     dest: "{{ item }}"
     state: link
+  become: yes
   with_items:
     - /usr/bin/sonar
     - /etc/init.d/sonar
 
 - name: Ensure Sonar is running and set to start on boot.
-  service: name=sonar state=started enabled=yes
+  command: /etc/init.d/sonar restart
+  become: yes
 
 - name: Make sure Sonar is responding on the configured port.
   wait_for: port=9000 delay=3 timeout=300
+

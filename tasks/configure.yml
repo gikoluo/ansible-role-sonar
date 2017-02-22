@@ -5,6 +5,7 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   notify: restart sonar
+  become: yes
   with_items:
     - regexp: "^sonar.jdbc.username"
       line: "sonar.jdbc.username={{ sonar_mysql_username }}"

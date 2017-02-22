@@ -1,6 +1,6 @@
 ---
-dependencies:
-  - geerlingguy.mysql
+# dependencies:
+#   - geerlingguy.mysql
 
 galaxy_info:
   author: gikoluo
